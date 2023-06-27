@@ -12,7 +12,5 @@ class ImageDataProvider:
         """
         raise NotImplementedError('Abstract method')
 
-    def json_path(self) -> List[str]:
-        p = self.image_path()
-        fn, ext = os.path.splitext(p)
-        return fn + '.json'
+    def json_paths(self) -> List[str]:
+        return [os.path.splitext(p)[0] + '.json' for p in self.image_paths()]
