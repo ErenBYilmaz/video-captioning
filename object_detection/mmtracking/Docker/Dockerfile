@@ -27,8 +27,8 @@ USER user
 # WORKDIR /home/user
 WORKDIR /code/mmtracking
 # Create environment
-RUN python -m venv open-mmlab
-RUN source open-mmlab/bin/activate
+# RUN python -m venv open-mmlab
+# RUN source open-mmlab/bin/activate
 #  (optional)
 RUN pip install git+https://github.com/votchallenge/toolkit.git
 # install the latest mmcv
