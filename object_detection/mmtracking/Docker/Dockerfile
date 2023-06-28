@@ -14,7 +14,8 @@ SHELL ["/bin/bash", "--login", "-c"]
 #RUN rm /etc/apt/sources.list.d/nvidia-ml.list
 
 # some useful tools
-RUN apt-get update && apt-get install curl git unzip graphviz nano -y && rm -rf /var/lib/apt/lists/*
+#RUN apt-get update && apt-get install curl git unzip graphviz nano -y && rm -rf /var/lib/apt/lists/*
+RUN apt-get update && apt-get install curl git unzip graphviz nano -y
 
 
 # create current user inside image, so that newly created files belong to us and not to root and can be accessed outside docker as well
