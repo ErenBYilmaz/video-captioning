@@ -1026,6 +1026,12 @@ class EBC(JSONConvertible):
         cls = EBC.SUBCLASSES_BY_NAME[data['type']]
         return class_from_json(cls, data)
 
+    @classmethod
+    def from_json_file(cls, path: str):
+        with open(path, 'r') as f:
+            data = json.load(f)
+        return cls.from_json(data)
+
 
 class _Container(EBC):
     def __init__(self, item):

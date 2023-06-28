@@ -1,5 +1,5 @@
 # Setup
 
 ```
-pip install matplotlib numpy pandas scipy tabulate cachetools
+pip install matplotlib numpy pandas scipy tabulate cachetools pygments
 ```
