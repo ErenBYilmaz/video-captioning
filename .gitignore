@@ -2,3 +2,5 @@
 img/*
 !img/.keep
 *.zip
+*.log
+__pycache__

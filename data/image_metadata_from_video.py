@@ -1,12 +1,11 @@
 import datetime
 import os.path
-from typing import Literal
 
 from data.image_metadata import ImageMetadata
 
 
 class ImageMetadataFromVideo(ImageMetadata):
-    def __init__(self, image_type: Literal['png', 'jpg'], timestamp: float, video_path: str):
+    def __init__(self, image_type: str, timestamp: float, video_path: str):
         super().__init__(image_type=image_type)
         self.timestamp = timestamp
         self.video_path = video_path
