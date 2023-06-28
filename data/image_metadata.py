@@ -3,6 +3,7 @@ import os
 from abc import ABCMeta
 from typing import Dict, Any
 
+import data.register_subclasses
 from lib.util import EBC
 
 
@@ -35,6 +36,7 @@ class ImageMetadata(EBC, metaclass=ABCMeta):
 
     @classmethod
     def from_json_file(cls, path: str):
+        data.register_subclasses.register_subclasses()
         result = super().from_json_file(path)
         result._base_path = os.path.dirname(path)
         return result
