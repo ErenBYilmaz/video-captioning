@@ -30,7 +30,7 @@ WORKDIR /code/mmtracking
 # RUN python -m venv open-mmlab
 # RUN source open-mmlab/bin/activate
 #  (optional)
-RUN pip install git+https://github.com/votchallenge/toolkit.git
+# RUN pip install git+https://github.com/votchallenge/toolkit.git
 # install the latest mmcv
 RUN pip install mmcv-full -f https://download.openmmlab.com/mmcv/dist/cu117/torch2.0.1/index.html
 
