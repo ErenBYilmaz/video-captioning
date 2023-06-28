@@ -10,8 +10,8 @@ ENV PYTHONPATH="/code/"
 SHELL ["/bin/bash", "--login", "-c"]
 
 # otherwise some nividia stuff will not install properly
-RUN rm /etc/apt/sources.list.d/cuda.list
-RUN rm /etc/apt/sources.list.d/nvidia-ml.list
+#RUN rm /etc/apt/sources.list.d/cuda.list
+#RUN rm /etc/apt/sources.list.d/nvidia-ml.list
 
 # some useful tools
 RUN apt-get update && apt-get install curl git unzip graphviz nano -y && rm -rf /var/lib/apt/lists/*
