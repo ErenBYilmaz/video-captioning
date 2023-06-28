@@ -42,6 +42,9 @@ class VideoToImageConverter(ImageDataProvider):
         assert os.path.isfile(to_path)
         return to_path
 
+    def video_file_name(self) -> str:
+        return os.path.basename(self.video_path)
+
     def image_paths(self) -> List[str]:
         timestamp = 0
         images = []

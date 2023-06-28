@@ -1,5 +1,5 @@
 # Setup
 
 ```
-pip install matplotlib numpy pandas scipy tabulate cachetools pygments websocket-client opencv-python
+pip install matplotlib numpy pandas scipy tabulate cachetools pygments websocket-client opencv-python pysrt
 ```
