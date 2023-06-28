@@ -24,3 +24,17 @@
   1. Bild inklusive Metadaten aus Video extrahieren
   2. Bild zu Text
   3. Text anzeigen
+
+# Video libraries
+ - moviepy: https://zulko.github.io/moviepy/examples/painting_effect.html
+ - opencv
+ - ffmpeg?
+
+# Useful links:
+- https://zulko.github.io/moviepy/examples/painting_effect.html
+- https://huggingface.co/spaces/Vision-CAIR/minigpt4
+  - https://github.com/Vision-CAIR/MiniGPT-4
+  - https://github.com/Vision-CAIR/MiniGPT-4/blob/main/PrepareVicuna.md
+    - https://huggingface.co/docs/transformers/main/model_doc/llama
+- https://www.eventbrite.de/e/codingwaterkant-2023-tickets-493782716397
+- https://www.waterkant.sh/de/coding-waterkant
