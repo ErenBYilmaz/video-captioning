@@ -50,6 +50,7 @@ git lfs install
 git clone https://huggingface.co/lmsys/vicuna-13b-delta-v0
 git clone https://huggingface.co/decapoda-research/llama-13b-hf
 python -m fastchat.model.apply_delta --base /code/vicuna_weights/llama-13b-hf/  --target /code/vicuna_weights/merged/  --delta /code/vicuna_weights/vicuna-13b-delta-v0/
+python demo.py --cfg-path eval_configs/minigpt4_eval.yaml  --gpu-id 0
 ```
 
 # MiniGPT-4 dockerfile

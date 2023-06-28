@@ -26,13 +26,13 @@ class TestImageMetadata(unittest.TestCase):
 
 class TestImageMetadataFromVideo(unittest.TestCase):
     def test_json_conversion(self):
-        provider = SingleImageProvider(os.path.join(resource_dir_path(), 'ImageMetadataFromVideo_ExampleVideo_mp4_00090_00.jpg'))
+        provider = SingleImageProvider(os.path.join(resource_dir_path(), 'ImageMetadataFromVideo_ExampleVideo_mp4_00-01-30-000.jpg'))
         img_metadata = provider.image_metadata_list()[0]
         assert isinstance(img_metadata, ImageMetadataFromVideo)
         self.assertEqual(img_metadata.to_json(), ImageMetadata.from_json(img_metadata.to_json()).to_json())
 
     def test_file_name_formatting(self):
-        provider = SingleImageProvider(os.path.join(resource_dir_path(), 'ImageMetadataFromVideo_ExampleVideo_mp4_00090_00.jpg'))
+        provider = SingleImageProvider(os.path.join(resource_dir_path(), 'ImageMetadataFromVideo_ExampleVideo_mp4_00-01-30-000.jpg'))
         img_metadata = provider.image_metadata_list()[0]
         assert os.path.isfile(img_metadata.image_path()), img_metadata.image_path()
         assert os.path.isfile(img_metadata.json_path())

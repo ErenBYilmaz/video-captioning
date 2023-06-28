@@ -40,7 +40,9 @@ class ImageMetadata(EBC, metaclass=ABCMeta):
         data.register_subclasses.register_subclasses()
         result: ImageMetadata = super().from_json_file(path)
         result._base_path = os.path.dirname(path)
-        assert os.path.normpath(os.path.abspath(result.json_path())) == os.path.normpath(os.path.abspath(path))
+        p1 = os.path.normpath(os.path.abspath(result.json_path()))
+        p2 = os.path.normpath(os.path.abspath(path))
+        assert p1 == p2, (p1, p2)
         return result
 
     def to_json(self) -> Dict[str, Any]:
