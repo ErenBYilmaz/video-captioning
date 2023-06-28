@@ -1,3 +1,4 @@
+import base64
 import json
 import os
 from abc import ABCMeta
@@ -52,3 +53,8 @@ class ImageMetadata(EBC, metaclass=ABCMeta):
 
     def identifier(self):
         return self.base_file_name()
+
+    def base64(self):
+        with open(self.image_path(), 'rb') as f:
+            data = f.read()
+        return base64.b64encode(data)
