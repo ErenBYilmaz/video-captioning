@@ -37,8 +37,9 @@ class ImageMetadata(EBC, metaclass=ABCMeta):
     @classmethod
     def from_json_file(cls, path: str):
         data.register_subclasses.register_subclasses()
-        result = super().from_json_file(path)
+        result: ImageMetadata = super().from_json_file(path)
         result._base_path = os.path.dirname(path)
+        assert os.path.normpath(os.path.abspath(result.json_path())) == os.path.normpath(os.path.abspath(path))
         return result
 
     def to_json(self) -> Dict[str, Any]:
@@ -48,5 +49,3 @@ class ImageMetadata(EBC, metaclass=ABCMeta):
 
     def identifier(self):
         return self.base_file_name()
-
-
