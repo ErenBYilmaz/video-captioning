@@ -1,0 +1,6 @@
+{
+  "type": "ImageMetadataFromVideo",
+  "timestamp": 90,
+  "video_path" : "resources/ExampleVideo.mp4",
+  "image_type": "jpg"
+}

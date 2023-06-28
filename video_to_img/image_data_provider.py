@@ -1,7 +1,7 @@
 import os.path
 from typing import List
 
-from data.image_metadata import ImageMetadataFromVideo
+from data.image_metadata_from_video import ImageMetadataFromVideo
 
 
 class ImageDataProvider:

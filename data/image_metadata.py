@@ -1,16 +1,15 @@
-import datetime
 import json
 import os
-from abc import ABCMeta, abstractmethod
-from typing import Literal
+from abc import ABCMeta
+from typing import Dict, Any
 
 from lib.util import EBC
 
 
 class ImageMetadata(EBC, metaclass=ABCMeta):
-    def __init__(self, image_type, created_by_provider):
+    def __init__(self, image_type):
         self.image_type = image_type
-        self.created_by_provider = created_by_provider
+        self._base_path = 'img'
 
     def image_filename(self):
         return self.base_file_name() + '.' + self.image_type
@@ -19,10 +18,13 @@ class ImageMetadata(EBC, metaclass=ABCMeta):
         return self.base_file_name() + '.json'
 
     def json_path(self):
-        return os.path.join('img', self.json_filename())
+        return os.path.join(self.base_path(), self.json_filename())
 
     def image_path(self):
-        return os.path.join('img', self.image_filename())
+        return os.path.join(self.base_path(), self.image_filename())
+
+    def base_path(self):
+        return self._base_path
 
     def base_file_name(self):
         raise NotImplementedError('Abstract method')
@@ -31,19 +33,18 @@ class ImageMetadata(EBC, metaclass=ABCMeta):
         with open(self.json_path(), 'w') as f:
             json.dump(self.to_json(), f, indent=4)
 
+    @classmethod
+    def from_json_file(cls, path: str):
+        result = super().from_json_file(path)
+        result._base_path = os.path.dirname(path)
+        return result
+
+    def to_json(self) -> Dict[str, Any]:
+        result = super().to_json()
+        del result['_base_path']
+        return result
+
     def identifier(self):
         return self.base_file_name()
 
 
-class ImageMetadataFromVideo(ImageMetadata):
-    def __init__(self, created_by_provider: str, image_type: Literal['png', 'jpg'], timestamp: float, video_path: str):
-        super().__init__(created_by_provider=created_by_provider, image_type=image_type)
-        self.timestamp = timestamp
-        self.video_path = video_path
-
-    def base_file_name(self):
-        """
-        :return: The base file name is composed of the provider name and the timestamp,
-        where the timestamp is padded by leading zeros to 5 digits and also includes 2 decimals.
-        """
-        return f'{self.created_by_provider}_{self.timestamp:08.2f}'
