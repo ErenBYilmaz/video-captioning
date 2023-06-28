@@ -10,3 +10,4 @@ class TestImageMetadata(unittest.TestCase):
         img_metadata = provider.image_metadata_list()[0]
         assert isinstance(img_metadata, ImageMetadata)
         self.assertEqual(img_metadata.to_json(), ImageMetadata.from_json(img_metadata.to_json()).to_json())
+        assert img_metadata.created_by_provider == provider.name()

@@ -21,6 +21,9 @@ class ImageMetadata(EBC, metaclass=ABCMeta):
     def json_path(self):
         return os.path.join('img', self.json_filename())
 
+    def image_path(self):
+        return os.path.join('img', self.image_filename())
+
     def base_file_name(self):
         raise NotImplementedError('Abstract method')
 
@@ -28,14 +31,19 @@ class ImageMetadata(EBC, metaclass=ABCMeta):
         with open(self.json_path(), 'w') as f:
             json.dump(self.to_json(), f, indent=4)
 
+    def identifier(self):
+        return self.base_file_name()
+
 
 class ImageMetadataFromVideo(ImageMetadata):
-    def __init__(self, created_by_provider: str, dt_created: float, image_type: Literal['png', 'jpg']):
+    def __init__(self, created_by_provider: str, image_type: Literal['png', 'jpg'], timestamp: float, video_path: str):
         super().__init__(created_by_provider=created_by_provider, image_type=image_type)
-        self.dt_created = dt_created
-
-    def dt_str(self) -> str:
-        return datetime.datetime.fromtimestamp(self.dt_created).strftime('%Y-%m-%d_%H-%M-%S')
+        self.timestamp = timestamp
+        self.video_path = video_path
 
     def base_file_name(self):
-        return f'{self.created_by_provider}_{self.dt_str()}'
+        """
+        :return: The base file name is composed of the provider name and the timestamp,
+        where the timestamp is padded by leading zeros to 5 digits and also includes 2 decimals.
+        """
+        return f'{self.created_by_provider}_{self.timestamp:08.2f}'
