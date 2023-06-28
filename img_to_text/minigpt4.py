@@ -2,7 +2,7 @@ from data.image_metadata import ImageMetadata
 from img_to_text.image_to_text_converter import ImageToCaptionConverter
 
 
-class MiniGP4Interface:
+class MiniGPT4Interface:
     def __init__(self):
         self.uploaded_img = False
 
@@ -16,9 +16,9 @@ class MiniGP4Interface:
         raise NotImplementedError('TO DO')
 
 
-class MiniGP4Captioning(ImageToCaptionConverter):
+class MiniGPT4Captioning(ImageToCaptionConverter):
     def __init__(self):
-        self.interface = MiniGP4Interface()
+        self.interface = MiniGPT4Interface()
 
     def convert(self, img_data: ImageMetadata) -> str:
         self.interface.upload_img(img_data)
