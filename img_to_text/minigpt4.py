@@ -10,7 +10,7 @@ class MiniGPT4Interface:
         raise NotImplementedError('TO DO')
         self.uploaded_img = True
 
-    def send_text(self, text: str):
+    def send_prompt(self, prompt: str):
         if not self.uploaded_img:
             raise RuntimeError('Image not uploaded')
         raise NotImplementedError('TO DO')
@@ -22,5 +22,5 @@ class MiniGPT4Captioning(ImageToCaptionConverter):
 
     def convert(self, img_data: ImageMetadata) -> str:
         self.interface.upload_img(img_data)
-        return self.interface.send_text(
-            'The image is a snapshot of a video file. You job to create a caption for the video that should be informative and show some interesting fact(s). Please provide five words at most.')
+        prompt = 'The image is a snapshot of a video file. You job to create a caption for the video that should be informative and show some interesting fact(s). Please provide five words at most.'
+        return self.interface.send_prompt(prompt)
