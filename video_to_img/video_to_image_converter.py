@@ -17,7 +17,7 @@ class VideoToImageConverter(ImageDataProvider):
         assert os.path.isfile(video_path)
 
     def extract_image_at_timestamp(self, timestamp: int) -> str:
-        video_file = os.path.join(resources.resource_dir_path(), 'VIDEO_CAPTIONING_DEMO_VIDEO.mp4')
+        video_file = self.video_path
         video = cv2.VideoCapture(video_file)
 
         nr_frames = video.get(cv2.CAP_PROP_FRAME_COUNT)
