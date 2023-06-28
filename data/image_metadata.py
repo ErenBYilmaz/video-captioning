@@ -3,8 +3,10 @@ import json
 import os
 from typing import Literal
 
+from lib.util import EBC
 
-class ImageMetadata:
+
+class ImageMetadata(EBC):
     def __init__(self, created_by_provider: str, dt_created: float, image_type: Literal['png', 'jpg']):
         self.dt_created = dt_created
         self.created_by_provider = created_by_provider
