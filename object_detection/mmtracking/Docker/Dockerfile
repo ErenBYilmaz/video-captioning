@@ -15,6 +15,7 @@ SHELL ["/bin/bash", "--login", "-c"]
 
 # some useful tools
 #RUN apt-get update && apt-get install curl git unzip graphviz nano -y && rm -rf /var/lib/apt/lists/*
+ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install curl git unzip graphviz nano -y
 
 
