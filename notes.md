@@ -27,7 +27,7 @@
 
 # Video libraries
  - moviepy: https://zulko.github.io/moviepy/examples/painting_effect.html
- - opencv
+ - opencv: https://pypi.org/project/cv2watermark/
  - ffmpeg?
 
 
@@ -41,6 +41,7 @@
   - https://github.com/Vision-CAIR/MiniGPT-4
   - https://github.com/Vision-CAIR/MiniGPT-4/blob/main/PrepareVicuna.md
     - https://huggingface.co/docs/transformers/main/model_doc/llama
+    - https://github.com/Vision-CAIR/MiniGPT-4/issues/59#issuecomment-1515129713
 - https://huggingface.co/spaces/DAMO-NLP-SG/Video-LLaMA
 
 # MiniGPT-4 weight-merge command history
