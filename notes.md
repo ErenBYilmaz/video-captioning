@@ -3,9 +3,9 @@
 - [ ] technische Schnittstelle zum Sprachmodell
   - [ ] Auswahl des Modells
 - [ ] Prompt-Engineering
-- [ ] Videoauswahl für Entwicklung und Tests
-  - [ ] evtl erstmal testbilder
-- [ ] Bilder aus Videos ausschneiden
+- [x] Videoauswahl für Entwicklung und Tests
+  - [x] evtl erstmal testbilder
+- [x] Bilder aus Videos ausschneiden
 - [ ] Design: Wie kann das nachher gut aussehen? Details/Mockup bzgl. Overlay
 - [ ] Technische Umsetzung: Einbetten ins Video
 - [ ] Videos anschauen und nach Fehlern/Verbesserungsmöglichkeiten schauen
@@ -16,9 +16,9 @@
 - [ ] Kombination von Modellen? MiniGPT-4 -> GPT 3.5-Turbo
 
 # Schnittstellen
-- [ ] Bilddatei im png format, dazu zu jedem Bild eine json datei mit gleichem namen aber anderer endung
+- [x] Bilddatei im png/jpg format, dazu zu jedem Bild eine json datei mit gleichem namen aber anderer endung
   - [ ] Die JSON-datei enthält metadaten inklusive out des tools
-  - [ ] bilddateien nach zeit organisieren (im dateinamen sodass man danach sortieren kann)
+  - [x] bilddateien nach zeit organisieren (im dateinamen sodass man danach sortieren kann)
 - [ ] Eine Logdatei die die verarbeitungsschritte trackt (bilddübergreifend)
 - Im wesentlichen drei komponenten:
   1. Bild inklusive Metadaten aus Video extrahieren

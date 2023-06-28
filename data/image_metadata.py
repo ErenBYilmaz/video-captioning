@@ -5,12 +5,13 @@ from typing import Dict, Any
 
 import data.register_subclasses
 from lib.util import EBC
+from resources.resources import img_dir_path
 
 
 class ImageMetadata(EBC, metaclass=ABCMeta):
     def __init__(self, image_type):
         self.image_type = image_type
-        self._base_path = 'img'
+        self._base_path = img_dir_path()
 
     def image_filename(self):
         return self.base_file_name() + '.' + self.image_type

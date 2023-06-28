@@ -1,5 +1,3 @@
-import os.path
-import shutil
 from typing import Literal
 
 from data.image_metadata import ImageMetadata

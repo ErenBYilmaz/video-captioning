@@ -1,3 +1,4 @@
+import datetime
 import os.path
 from typing import Literal
 
@@ -12,7 +13,13 @@ class ImageMetadataFromVideo(ImageMetadata):
 
     def base_file_name(self):
         """
-        :return: The base file name is composed of the provider name and the timestamp,
-        where the timestamp is padded by leading zeros to 5 digits and also includes 2 decimals.
+        :return: The base file name is composed of the provider name and the timestamp.
+        the timestamp is formatted as follows: HH-MM-SS-MS
         """
-        return f'{type(self).__name__}_{os.path.basename(self.video_path)}_{self.timestamp:08.2f}'.replace('.', '_')
+        delta = datetime.timedelta(seconds=self.timestamp)
+        hours = delta.total_seconds() // 3600
+        minutes = (delta.total_seconds() - hours * 3600) // 60
+        ms = delta.microseconds // 1000
+        seconds = delta.total_seconds() - hours * 3600 - minutes * 60 - ms / 1000
+        ts_str = f'{int(hours):02d}-{int(minutes):02d}-{int(seconds):02d}-{int(ms):03d}'
+        return f'{type(self).__name__}_{os.path.basename(self.video_path)}_{ts_str}'.replace('.', '_')
