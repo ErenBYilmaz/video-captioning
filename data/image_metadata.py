@@ -66,3 +66,6 @@ class ImageMetadata(EBC):
         with open(self.json_path(), 'r') as f:
             json_data = json.load(f)
         self.__dict__.update(json_data)
+
+    def extra_info_string(self) -> str:
+        return ''

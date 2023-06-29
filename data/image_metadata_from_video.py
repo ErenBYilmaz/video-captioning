@@ -11,7 +11,6 @@ class ImageMetadataFromVideo(ImageMetadata):
         self.timestamp = timestamp
         self.video_path = video_path
 
-
     def base_file_name(self):
         """
         :return: The base file name is composed of the provider name and the timestamp.
@@ -24,3 +23,9 @@ class ImageMetadataFromVideo(ImageMetadata):
         seconds = delta.total_seconds() - hours * 3600 - minutes * 60 - ms / 1000
         ts_str = f'{int(hours):02d}-{int(minutes):02d}-{int(seconds):02d}-{int(ms):03d}'
         return f'{type(self).__name__}_{os.path.basename(self.video_path)}_{ts_str}'.replace('.', '_')
+
+    def extra_info_string(self) -> str:
+        return f'The image was extracted from a video named {self.video_name()}.'
+
+    def video_name(self):
+        return os.path.basename(self.video_path)

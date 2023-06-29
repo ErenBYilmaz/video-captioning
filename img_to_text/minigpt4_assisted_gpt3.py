@@ -25,7 +25,7 @@ Keep in mind that the user will not see the result as an image but rather as a v
 Do not describe what objects look like or what is obviously visible in the image.
  
 # DESCRIPTION:
-Here is the description (output of a previous pipeline step) that needs to be summarized to a caption - it is enclosed in triple quotes:
+Here is the description (output of previous pipeline steps) that needs to be summarized to a caption - it is enclosed in triple quotes:
 ```markdown
 {description}
 ```
@@ -53,7 +53,7 @@ Your summary will then be used by a later pipeline component to create a caption
 
     def _convert(self, img_data: ImageMetadata) -> str:
         minigpt4_output = self.mini_gpt4.cached_convert(img_data)
-        prompt = self.default_prompt(minigpt4_output)
+        prompt = self.default_prompt(minigpt4_output + '\n' + img_data.extra_info_string())
         gpt_caption = self.interface.send_prompt(prompt)
         if self.is_error_message(gpt_caption):
             return ''
