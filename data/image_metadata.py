@@ -9,10 +9,13 @@ from lib.util import EBC
 from resources.resources import img_dir_path
 
 
-class ImageMetadata(EBC, metaclass=ABCMeta):
-    def __init__(self, image_type):
+class ImageMetadata(EBC):
+    def __init__(self, image_type, tool_outputs: Dict[str, Any] = None):
         self.image_type = image_type
         self._base_path = img_dir_path()
+        if tool_outputs is None:
+            tool_outputs = {}
+        self.tool_outputs = tool_outputs
 
     def image_filename(self):
         return self.base_file_name() + '.' + self.image_type
@@ -56,5 +59,10 @@ class ImageMetadata(EBC, metaclass=ABCMeta):
 
     def base64(self):
         with open(self.image_path(), 'rb') as f:
-            data = f.read()
-        return base64.b64encode(data)
+            binary_data = f.read()
+        return base64.b64encode(binary_data)
+
+    def reload(self):
+        with open(self.json_path(), 'r') as f:
+            json_data = json.load(f)
+        self.__dict__.update(json_data)

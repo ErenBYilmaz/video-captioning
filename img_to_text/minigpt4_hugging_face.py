@@ -52,3 +52,4 @@ class MiniGPT4HuggingFaceInterface:
         data = response.json()
         print('received', data)
         return data['data'][0][0][1]
+
