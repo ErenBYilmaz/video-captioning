@@ -43,13 +43,44 @@ class TextOverlayCreator:
         box_path = os.path.join(resources.resource_dir_path(), "Frame at 00-00-16_overlay-black-background.png")
         foreground = Image.open(box_path)
         pil_img.paste(foreground, (0, 0), foreground)
+        offset = 15
         if len(lines) > 0:
-            image_editable.text((80, 15), lines[0], (237, 230, 211), font=(self.font_1()))
+            text = self.get_wrapped_text(lines[0], font=self.font_1(), line_length=380)
+            image_editable.text((80, offset), text, (237, 230, 211), font=(self.font_1()))
+            offset += 15 + self.get_text_dimensions(text, self.font_1())[1]
         if len(lines) > 1:
-            image_editable.text((140, 80), lines[1], (237, 230, 211), font=(self.font_2()))
+            text = self.get_wrapped_text(lines[1], font=self.font_2(), line_length=320)
+            image_editable.text((140, offset), text, (237, 230, 211), font=(self.font_2()))
+            offset += 15 + self.get_text_dimensions(text, self.font_2())[1]
         if len(lines) > 2:
-            image_editable.text((80, 155), '\n'.join(lines[2]), (237, 230, 211), font=(self.font_3()))
+            text = '\n'.join(lines[2:])
+            text = self.get_wrapped_text(text, font=self.font_3(), line_length=380)
+            image_editable.text((80, offset), text, (237, 230, 211), font=(self.font_3()))
+            offset += 15 + self.get_text_dimensions(text, self.font_3())[1]
         return pil_img
+
+    def get_wrapped_text(self, text: str,
+                         font: ImageFont.FreeTypeFont,
+                         line_length: int):
+        lines = ['']
+        for word in text.split():
+            line = f'{lines[-1]} {word}'.strip()
+            if font.getlength(line) <= line_length:
+                lines[-1] = line
+            else:
+                lines.append(word)
+        return '\n'.join(lines)
+
+    def get_text_dimensions(self, text_string, font):
+        # https://stackoverflow.com/a/46220683/9263761
+        ascent, descent = font.getmetrics()
+
+        text_width = font.getmask(text_string).getbbox()[2]
+        text_height = font.getmask(text_string).getbbox()[3] + descent
+        num_lines = len(text_string.splitlines())
+        text_height *= num_lines
+
+        return (text_width, text_height)
 
     def font_1(self):
         return ImageFont.truetype(os.path.join(resources.resource_dir_path(), 'Arial Black.ttf'), 35)
