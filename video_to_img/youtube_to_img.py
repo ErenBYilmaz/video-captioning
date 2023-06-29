@@ -14,7 +14,7 @@ class YoutubeToImageConverter(VideoToImageConverter):
         import lib.monkey_patch_pytube
         import pytube
         yt = pytube.YouTube(self.video_url)
-        video = yt.streams.filter(file_extension='mp4', res='480p').first()
+        video = yt.streams.filter(file_extension='mp4', progressive=True).first()
         to_dir = resources.img_dir_path()
         video.download(to_dir)
         return os.path.join(to_dir, video.default_filename)
