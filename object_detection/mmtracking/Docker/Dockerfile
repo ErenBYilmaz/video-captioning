@@ -20,7 +20,9 @@ SHELL ["/bin/bash", "--login", "-c"]
 # some useful tools
 #RUN apt-get update && apt-get install curl git unzip graphviz nano -y && rm -rf /var/lib/apt/lists/*
 ENV DEBIAN_FRONTEND=noninteractive
-RUN apt-get update && apt-get install curl git unzip graphviz nano gcc -y
+#RUN apk add build-base
+#RUN apk add alpine-sdk
+RUN apt-get update && apt-get install --reinstall build-essential -y && apt-get install curl git unzip graphviz nano gcc -y
 #RUN wget https://repo.anaconda.com/archive/Anaconda3-2022.05-Linux-x86_64.sh
 #RUN bash Anaconda3-2022.05-Linux-x86_64.sh -y
 
@@ -38,7 +40,8 @@ RUN conda init bash
 
 RUN conda install pytorch==1.6.0 torchvision==0.7.0 cudatoolkit=10.1 -c pytorch -y
 
-RUN pip install git+https://github.com/votchallenge/toolkit.git (optional)
+SHELL ["/bin/bash", "--login", "-c"]
+RUN pip install git+https://github.com/votchallenge/toolkit.git
 # install the latest mmcv
 RUN pip install mmcv-full -f https://download.openmmlab.com/mmcv/dist/cu101/torch1.6.0/index.html
 
@@ -47,7 +50,8 @@ RUN pip install mmdet
 
 # install mmtracking
 RUN git clone https://github.com/open-mmlab/mmtracking.git
-RUN cd mmtracking
+WORKDIR /code/mmtracking/mmtracking
+#RUN cd mmtracking
 RUN pip install -r requirements/build.txt
 RUN pip install -v -e .
 RUN pip install git+https://github.com/JonathonLuiten/TrackEval.git
