@@ -22,7 +22,7 @@ SHELL ["/bin/bash", "--login", "-c"]
 ENV DEBIAN_FRONTEND=noninteractive
 #RUN apk add build-base
 #RUN apk add alpine-sdk
-RUN apt-get update && apt-get install --reinstall build-essential && apt-get install curl git unzip graphviz nano gcc -y
+RUN apt-get update && apt-get install --reinstall build-essential -y && apt-get install curl git unzip graphviz nano gcc -y
 #RUN wget https://repo.anaconda.com/archive/Anaconda3-2022.05-Linux-x86_64.sh
 #RUN bash Anaconda3-2022.05-Linux-x86_64.sh -y
 
