@@ -10,5 +10,5 @@ class MiniGPT4Captioning(ImageToCaptionConverter):
 
     def convert(self, img_data: ImageMetadata) -> str:
         self.interface.upload_img(img_data)
-        prompt = 'The image is a snapshot of a video file. You job to create a caption for the video that should be informative and show some interesting fact(s). Please provide five words at most.'
+        prompt = 'The image is a snapshot of a video file. Your job to create a caption for the video that should be informative and show some interesting fact(s). Please provide five words at most.'
         return self.interface.send_prompt(prompt)

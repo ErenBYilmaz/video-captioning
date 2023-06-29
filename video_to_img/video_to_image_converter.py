@@ -46,7 +46,7 @@ class VideoToImageConverter(ImageDataProvider):
         return os.path.basename(self.video_path)
 
     def image_paths(self) -> List[str]:
-        timestamp = 0
+        timestamp = 3
         images = []
         while True:
             try:
