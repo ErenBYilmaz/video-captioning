@@ -11,3 +11,4 @@ class TestMiniGPT4(unittest.TestCase):
         result = subject.convert(img_data)
         assert isinstance(result, str)
         assert len(result) > 0
+        print(result)

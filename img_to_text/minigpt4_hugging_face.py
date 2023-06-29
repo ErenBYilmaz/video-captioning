@@ -2,6 +2,7 @@ import json
 import uuid
 from typing import Optional, Dict
 
+import requests
 import websocket
 
 from data.image_metadata import ImageMetadata
@@ -11,52 +12,45 @@ class MiniGPT4HuggingFaceInterface:
     def __init__(self):
         self.uploaded_img = False
         self.socket: Optional[websocket.WebSocket] = None
+        self.session_id: Optional[str] = None
 
     def base_url(self):
-        return 'wss://damo-nlp-sg-video-llama.hf.space'
+        return 'http://host.docker.internal:7860'
+        # return 'ws://127.0.0.1:7860'
+        # return 'wss://damo-nlp-sg-video-llama.hf.space'
 
     def upload_img(self, img_data: ImageMetadata):
-        websocket_url = self.base_url() + '/queue/join'
-        self.ensure_socket_connection(websocket_url)
-        session_id = uuid.uuid4()
-        json_data = {'fn_index': 0, 'session_hash': session_id}
-        print(f'Sending to websocket: {json.dumps(json_data, indent=4)[:200]}')
-        data_to_send = self.encode_json(json_data)
-        self.socket.send(data_to_send, opcode=2)
-        while True:
-            json_content = self.receive_json()
-            if 'msg' in json_content and json_content['msg'] == 'send_data':
-                break
+        requests.get(self.base_url()) #, headers={'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8'})
+        self.session_id = str(uuid.uuid4())
+
         json_data = {
             'fn_index': 0,
-            'session_hash': session_id,
-            'data': [f'data:image/{img_data.image_type};base64,' + img_data.base64(), '', None]
+            'event_data': None,
+            'session_hash': self.session_id,
+            'data': [f'data:image/{img_data.image_type};base64,' + img_data.base64().decode('ascii'), '', None]
         }
-        data_to_send = self.encode_json(json_data)
-        self.socket.send(data_to_send, opcode=2)
-        while True:
-            json_content = self.receive_json()
-            if 'msg' in json_content and json_content['msg'] == 'process_completed':
-                break
+        response = requests.post(self.predict_url(), json=json_data, headers={'Content-Type': 'application/json'})
+        data = response.json()
+        print('received', data)
+
         self.uploaded_img = True
 
-    def receive_json(self):
-        received = self.socket.recv_data_frame()[1].data
-        content = received.decode('latin-1')
-        json_content = json.loads(content)
-        print('Received through websocket: ' + json.dumps(json_content, indent=4))
-        return json_content
-
-    def ensure_socket_connection(self, websocket_url):
-        if self.socket is None:
-            self.socket = websocket.WebSocket()
-        if not self.socket.connected:
-            self.socket.connect(websocket_url)
+    def predict_url(self):
+        return self.base_url() + '/run/predict'
 
     def send_prompt(self, prompt: str):
         if not self.uploaded_img:
             raise RuntimeError('Image not uploaded')
-        raise NotImplementedError('TO DO')
+        json_data = {
+            'fn_index': 2,
+            'data': [[[prompt, None]], None, None, 1, 1],
+            'event_data': None,
+            'session_hash': self.session_id,
+        }
+        response = requests.post(self.predict_url(), json=json_data, headers={'Content-Type': 'application/json'})
+        data = response.json()
+        print('received', data)
+        return data['data'][0][0][1]
 
     def receive_answer(token):
         """Waits until the server sends an answer that contains the desired request_token.
