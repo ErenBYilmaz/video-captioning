@@ -18,7 +18,7 @@ SHELL ["/bin/bash", "--login", "-c"]
 # some useful tools
 #RUN apt-get update && apt-get install curl git unzip graphviz nano -y && rm -rf /var/lib/apt/lists/*
 ENV DEBIAN_FRONTEND=noninteractive
-RUN apt-get update && apt-get install curl git unzip graphviz nano ggc conda -y
+RUN apt-get update && apt-get install curl git unzip graphviz nano gcc conda -y
 
 
 # create current user inside image, so that newly created files belong to us and not to root and can be accessed outside docker as well
