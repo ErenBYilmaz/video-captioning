@@ -1,0 +1,9 @@
+{
+    "type": "ImageMetadataFromVideo",
+    "image_type": "jpg",
+    "tool_outputs": {
+        "DummyConverter": "'Fancy caption'"
+    },
+    "timestamp": 23,
+    "video_path": "C:\\Users\\Eren\\Programme\\video-captioning\\resources\\VIDEO_CAPTIONING_DEMO_VIDEO.mp4"
+}
