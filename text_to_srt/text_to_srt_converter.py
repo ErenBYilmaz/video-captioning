@@ -14,9 +14,11 @@ from video_to_img.video_to_image_converter import VideoToImageConverter
 class TextToSRTConverter:
     caption_duration = 3000  # default caption time in milliseconds
 
-    def __init__(self, image_provider: VideoToImageConverter=ExampleVideoToImageConverter(), image_to_txt_converter: ImageToCaptionConverter=DummyConverter()):
+    def __init__(self, image_provider: VideoToImageConverter = ExampleVideoToImageConverter(), image_to_txt_converter: ImageToCaptionConverter = DummyConverter()):
         self.image_provider = image_provider
         self.image_to_txt_converter = image_to_txt_converter
+
+        self.create_srt()
 
     def create_srt(self):
         image_metadata = self.image_provider.image_metadata_list()
