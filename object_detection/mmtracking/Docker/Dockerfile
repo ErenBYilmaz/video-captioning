@@ -38,7 +38,7 @@ RUN conda init bash
 
 RUN conda install pytorch==1.6.0 torchvision==0.7.0 cudatoolkit=10.1 -c pytorch -y
 
-RUN pip install git+https://github.com/votchallenge/toolkit.git (optional)
+RUN pip install git+https://github.com/votchallenge/toolkit.git
 # install the latest mmcv
 RUN pip install mmcv-full -f https://download.openmmlab.com/mmcv/dist/cu101/torch1.6.0/index.html
 
