@@ -33,12 +33,11 @@ class VideoToImageConverter(ImageDataProvider):
                                           timestamp=timestamp,
                                           video_path=self.video_path)
         to_path = metadata.image_path()
-        if not self.overwrite:
-            assert not os.path.isfile(to_path)
-        metadata.save_to_disk()
-        print('Writing to', to_path)
-        success = cv2.imwrite(to_path, frame)
-        assert success
+        if self.overwrite or not os.path.isfile(to_path):
+            metadata.save_to_disk()
+            print('Writing to', to_path)
+            success = cv2.imwrite(to_path, frame)
+            assert success
         assert os.path.isfile(to_path)
         return to_path
 
@@ -46,7 +45,7 @@ class VideoToImageConverter(ImageDataProvider):
         return os.path.basename(self.video_path)
 
     def image_paths(self) -> List[str]:
-        timestamp = 0
+        timestamp = 3
         images = []
         while True:
             try:

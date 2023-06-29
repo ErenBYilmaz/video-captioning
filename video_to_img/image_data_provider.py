@@ -1,6 +1,7 @@
 import os.path
 from typing import List
 
+from data.image_metadata import ImageMetadata
 from data.image_metadata_from_video import ImageMetadataFromVideo
 
 
@@ -17,5 +18,5 @@ class ImageDataProvider:
     def json_paths(self) -> List[str]:
         return [os.path.splitext(p)[0] + '.json' for p in self.image_paths()]
 
-    def image_metadata_list(self) -> List[ImageMetadataFromVideo]:
-        return [ImageMetadataFromVideo.from_json_file(p) for p in self.json_paths()]
+    def image_metadata_list(self) -> List[ImageMetadata]:
+        return [ImageMetadata.from_json_file(p) for p in self.json_paths()]

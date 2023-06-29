@@ -4,5 +4,5 @@ from lib.util import EBC
 
 
 class DummyConverter(ImageToCaptionConverter):
-    def convert(self, img_data: ImageMetadata) -> str:
+    def _convert(self, img_data: ImageMetadata) -> str:
         return "'Fancy caption'"

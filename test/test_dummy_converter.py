@@ -10,6 +10,6 @@ class TestDummyConverter(unittest.TestCase):
     def test_converter(self):
         subject = DummyConverter()
         img_data = ExampleImageProvider().image_metadata_list()[0]
-        result = subject.convert(img_data)
+        result = subject._convert(img_data)
         assert isinstance(result, str)
         assert len(result) > 0

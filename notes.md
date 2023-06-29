@@ -1,12 +1,13 @@
 # Outline
 
-- [ ] technische Schnittstelle zum Sprachmodell
-  - [ ] Auswahl des Modells
+- [x] technische Schnittstelle zum Sprachmodell
+  - [x] Auswahl des Modells
 - [ ] Prompt-Engineering
 - [x] Videoauswahl für Entwicklung und Tests
   - [x] evtl erstmal testbilder
 - [x] Bilder aus Videos ausschneiden
 - [ ] Design: Wie kann das nachher gut aussehen? Details/Mockup bzgl. Overlay
+- [x] Technische Umsetzung: Untertiteldatei
 - [ ] Technische Umsetzung: Einbetten ins Video
 - [ ] Videos anschauen und nach Fehlern/Verbesserungsmöglichkeiten schauen
 
@@ -17,7 +18,7 @@
 
 # Schnittstellen
 - [x] Bilddatei im png/jpg format, dazu zu jedem Bild eine json datei mit gleichem namen aber anderer endung
-  - [ ] Die JSON-datei enthält metadaten inklusive out des tools
+  - [x] Die JSON-datei enthält metadaten inklusive out des tools
   - [x] bilddateien nach zeit organisieren (im dateinamen sodass man danach sortieren kann)
 - [ ] Eine Logdatei die die verarbeitungsschritte trackt (bilddübergreifend)
 - Im wesentlichen drei komponenten:

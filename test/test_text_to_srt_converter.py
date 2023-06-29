@@ -11,6 +11,6 @@ from video_to_img.example_video_converter import ExampleVideoToImageConverter
 class TestTextToSRTConverter(unittest.TestCase):
 
     def test_converter(self):
-        subject = TextToSRTConverter(ExampleVideoToImageConverter(), DummyConverter())
+        subject = TextToSRTConverter(ExampleVideoToImageConverter(overwrite=False), DummyConverter())
         subject.create_srt()
         assert os.path.isfile(subject.srt_path())
