@@ -32,12 +32,12 @@ USER user
 # WORKDIR /home/user
 WORKDIR /code/mmtracking
 # Create environment
-RUN conda env create -n openmmlab python=3.7 -y
+RUN conda env create -n openmmlab python=3.7
 SHELL ["conda", "run", "-n", "openmmlab", "/bin/bash", "-c"]
 #RUN conda activate open-mmlab
 RUN conda init bash
 
-RUN conda install pytorch==1.6.0 torchvision==0.7.0 cudatoolkit=10.1 -c pytorch
+RUN conda install pytorch==1.6.0 torchvision==0.7.0 cudatoolkit=10.1 -c pytorch -y
 
 RUN pip install git+https://github.com/votchallenge/toolkit.git (optional)
 # install the latest mmcv
