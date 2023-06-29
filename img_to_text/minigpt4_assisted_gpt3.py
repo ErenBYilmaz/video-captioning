@@ -31,7 +31,7 @@ Here is the description (output of a previous pipeline step) that needs to be su
 ```
 
 # OUTPUT FORMAT:
-Regarding the caption format, please provide up to 3 bullet points with at most six words each, where each bullet point contains some interesting scientific facts about the locations/animals/people shown in the image.
+Regarding the caption format, please provide up to 3 bullet points with at most six words each (not whole sentences), where each bullet point contains some interesting scientific facts about the locations/animals/people shown in the image.
 Such information can and should include facts that are not listed in the description above, for example if an animal is shown in the foreground, you could provide species name and behaviour.
 
 An example output (for a different image that shows a tiger shark) could be:
@@ -39,7 +39,7 @@ An example output (for a different image that shows a tiger shark) could be:
 - Solitary, mostly nocturnal hunter
 - Length: 3-6 m
 
-If some part of the pipeline failed, (e.g. no image available), just answer with "{self.ERROR_PLACEHOLDER}" without quotes.
+If some part of the pipeline failed, (e.g. no image available), just answer with "{self.ERROR_PLACEHOLDER}".
 '''
 
     def default_minigpt4_prompt(self):
