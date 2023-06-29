@@ -44,6 +44,10 @@ class VideoToImageConverter(ImageDataProvider):
     def video_file_name(self) -> str:
         return os.path.basename(self.video_path)
 
+    def image_metadata_list(self) -> List[ImageMetadataFromVideo]:
+        return super().image_metadata_list()
+
+
     def image_paths(self) -> List[str]:
         timestamp = 3
         images = []

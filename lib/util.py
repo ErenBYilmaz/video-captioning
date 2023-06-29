@@ -1141,7 +1141,10 @@ def probably_serialized_from_json_convertible(data):
 
 def port_open(host, port):
     with closing(socket.socket(socket.AF_INET, socket.SOCK_STREAM)) as sock:
-        return sock.connect_ex((host, port)) == 0
+        try:
+            return sock.connect_ex((host, port)) == 0
+        except socket.gaierror:
+            return False
 
 class EBE(JSONConvertible, Enum):
     def __int__(self):

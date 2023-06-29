@@ -6,7 +6,8 @@ from img_to_text.minigpt4_hugging_face import MiniGPT4HuggingFaceInterface
 class MiniGPT4Captioning(ImageToCaptionConverter):
     def __init__(self, prompt: str = None):
         if prompt is None:
-            self.prompt = self.default_prompt()
+            prompt = self.default_prompt()
+        self.prompt = prompt
         self.interface = MiniGPT4HuggingFaceInterface()
 
     def _convert(self, img_data: ImageMetadata) -> str:

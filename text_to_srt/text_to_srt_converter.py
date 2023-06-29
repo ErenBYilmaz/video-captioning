@@ -12,7 +12,8 @@ from video_to_img.video_to_image_converter import VideoToImageConverter
 
 
 class TextToSRTConverter:
-    caption_duration = 3000  # default caption time in milliseconds
+    caption_duration = 5000  # default caption time in milliseconds
+    caption_offset = -2000
 
     def __init__(self, image_provider: VideoToImageConverter, image_to_txt_converter: ImageToCaptionConverter):
         self.image_provider = image_provider
@@ -26,8 +27,13 @@ class TextToSRTConverter:
 
         for img_meta in image_metadata:
             caption = self.image_to_txt_converter.cached_convert(img_meta)
+            if caption == '':
+                continue
             timestamp = img_meta.timestamp
-            subs.append(pysrt.SubRipItem(index=len(subs) + 1, text=caption, start=timestamp*1000, end=timestamp*1000 + self.caption_duration))
+            subs.append(pysrt.SubRipItem(index=len(subs) + 1,
+                                         text=caption,
+                                         start=timestamp * 1000 + self.caption_offset,
+                                         end=timestamp * 1000 + self.caption_offset + self.caption_duration))
 
         print('Writing srt file to', srt_file_path)
         subs.save(srt_file_path, encoding='utf-8')

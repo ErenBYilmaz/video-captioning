@@ -15,7 +15,7 @@ class ImageToCaptionConverter(EBC):
         if output is None:
             self._convert_and_update_metadata(img_data)
             img_data.reload()
-            assert self.name() in img_data.tool_outputs
+            output = img_data.tool_outputs[self.name()]
         return output
 
     def _convert_and_update_metadata(self, img_data: ImageMetadata):
@@ -28,9 +28,10 @@ class ImageToCaptionConverter(EBC):
         return self.__class__.__name__
 
     def clear_output_cache(self):
+        print(self.name(), ': Flushing the cache...')
         for filename in os.listdir(img_dir_path()):
-            with open(os.path.join(img_dir_path(), filename), 'r') as f:
-                img_data = ImageMetadata.from_json(json.load(f))
-            if self.name() in img_data.tool_outputs:
-                del img_data.tool_outputs[self.name()]
-                img_data.save_to_disk()
+            if filename.endswith('.json'):
+                img_data = ImageMetadata.from_json_file(os.path.join(img_dir_path(), filename))
+                if self.name() in img_data.tool_outputs:
+                    del img_data.tool_outputs[self.name()]
+                    img_data.save_to_disk()

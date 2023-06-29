@@ -5,6 +5,8 @@ from data.image_metadata import ImageMetadata
 
 class OpenAIInterface:
     def send_prompt(self, prompt: str):
+        print()
+        print(f'Sending to chatgpt: {prompt}')
         openai.api_key = os.getenv("OPENAI_API_KEY")
         message = [{"role": "user",
                     "content": prompt}]
@@ -15,7 +17,9 @@ class OpenAIInterface:
             max_tokens=1000,
             frequency_penalty=0.0
         )
-        return response['choices'][0]['message']['content']
+        result = response['choices'][0]['message']['content']
+        print(f'Received from chatgpt: {result}')
+        return result
 
     @staticmethod
     def list_models():
