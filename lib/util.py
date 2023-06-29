@@ -8,12 +8,13 @@ import math
 import os
 import random
 import re
+import socket
 import sqlite3
-import sys
 import threading
 import time
 import typing
 from bisect import bisect_left
+from contextlib import closing
 from enum import Enum
 from itertools import chain, combinations
 from math import log, isnan, nan, floor, log10, gcd
@@ -1138,6 +1139,9 @@ def class_from_json(cls, data: Dict[str, Any]):
 def probably_serialized_from_json_convertible(data):
     return isinstance(data, dict) and 'type' in data and data['type'] in JSONConvertible.SUBCLASSES_BY_NAME
 
+def port_open(host, port):
+    with closing(socket.socket(socket.AF_INET, socket.SOCK_STREAM)) as sock:
+        return sock.connect_ex((host, port)) == 0
 
 class EBE(JSONConvertible, Enum):
     def __int__(self):
