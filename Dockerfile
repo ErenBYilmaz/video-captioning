@@ -21,7 +21,7 @@ WORKDIR /home/user
 
 # Create environment
 RUN pip install --upgrade cmake pip setuptools wheel
-RUN pip install matplotlib numpy pandas scipy tabulate cachetools pygments websocket-client opencv-python pysrt requests cv2watermark openai pytube==15.0.0
+RUN pip install matplotlib numpy pandas scipy tabulate cachetools pygments websocket-client opencv-python pysrt requests cv2watermark openai pytube==15.0.0 moviepy
 
 
 
