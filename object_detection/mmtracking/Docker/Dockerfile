@@ -20,6 +20,8 @@ SHELL ["/bin/bash", "--login", "-c"]
 # some useful tools
 #RUN apt-get update && apt-get install curl git unzip graphviz nano -y && rm -rf /var/lib/apt/lists/*
 ENV DEBIAN_FRONTEND=noninteractive
+RUN apk add build-base
+RUN apk add alpine-sdk
 RUN apt-get update && apt-get install curl git unzip graphviz nano gcc -y
 #RUN wget https://repo.anaconda.com/archive/Anaconda3-2022.05-Linux-x86_64.sh
 #RUN bash Anaconda3-2022.05-Linux-x86_64.sh -y
