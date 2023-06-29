@@ -4,3 +4,4 @@ img/*
 *.zip
 *.log
 __pycache__
+resources/*.srt

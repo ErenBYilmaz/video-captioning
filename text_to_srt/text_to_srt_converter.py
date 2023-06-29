@@ -20,8 +20,7 @@ class TextToSRTConverter:
 
     def create_srt(self):
         image_metadata = self.image_provider.image_metadata_list()
-        base_path = os.path.dirname(self.image_provider.video_path)
-        srt_file_path = os.path.join(base_path, f"{os.path.basename(self.image_provider.video_file_name()).split('.')[0]}.srt")
+        srt_file_path = self.srt_path()
         # subs = pysrt.open()
         subs = pysrt.SubRipFile()
 
@@ -30,4 +29,10 @@ class TextToSRTConverter:
             timestamp = img_meta.timestamp
             subs.append(pysrt.SubRipItem(index=len(subs) + 1, text=caption, start=timestamp*1000, end=timestamp*1000 + self.caption_duration))
 
+        print('Writing srt file to', srt_file_path)
         subs.save(srt_file_path, encoding='utf-8')
+
+    def srt_path(self):
+        base_path = os.path.dirname(self.image_provider.video_path)
+        srt_file_path = os.path.join(base_path, f"{os.path.basename(self.image_provider.video_file_name()).split('.')[0]}.srt")
+        return srt_file_path
