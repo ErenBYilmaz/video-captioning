@@ -32,7 +32,7 @@ USER user
 # WORKDIR /home/user
 WORKDIR /code/mmtracking
 # Create environment
-RUN conda env create -n open-mmlab python=3.7 -y
+RUN conda env create -n open-mmlab python=3.7
 SHELL ["conda", "run", "-n", "open-mmlab", "/bin/bash", "-c"]
 #RUN conda activate open-mmlab
 RUN conda init bash
