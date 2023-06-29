@@ -28,7 +28,6 @@ RUN apt-get update && apt-get install curl git unzip graphviz nano gcc -y
 ARG USER_ID
 ARG GROUP_ID
 RUN addgroup --gid $GROUP_ID user && adduser --disabled-password --gecos '' --uid $USER_ID --gid $GROUP_ID user && usermod -a -G root user && addgroup --gid 1011 data-acc && usermod -a -G data-acc user
-USER user
 # WORKDIR /home/user
 WORKDIR /code/mmtracking
 # Create environment
@@ -56,3 +55,5 @@ RUN pip install git+https://github.com/lvis-dataset/lvis-api.git
 RUN pip install git+https://github.com/TAO-Dataset/tao.git
 
 WORKDIR /code
+
+USER user
