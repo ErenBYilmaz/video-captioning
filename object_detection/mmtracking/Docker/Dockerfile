@@ -2,7 +2,7 @@
 #FROM pytorch/pytorch:1.12.0-cuda11.3-cudnn8-runtime
 #FROM pytorch/pytorch:1.6.0-cuda10.1-cudnn7-runtime
 #FROM python:3.7.17-bookworm
-FROM vanallenlab/miniconda:3.7
+FROM vanallenlab/miniconda:3.9
 
 # run with:
 # docker build -t ${USER}_container_tf2 --build-arg USER_ID=$(id -u) --build-arg GROUP_ID=$(id -g) . -f DockerfileTF25
