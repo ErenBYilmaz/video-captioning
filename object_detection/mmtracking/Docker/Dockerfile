@@ -1,5 +1,6 @@
 #FROM pytorch/pytorch:2.0.1-cuda11.7-cudnn8-runtime
-FROM pytorch/pytorch:1.12.0-cuda11.3-cudnn8-runtime
+#FROM pytorch/pytorch:1.12.0-cuda11.3-cudnn8-runtime
+FROM pytorch/pytorch:1.6.0-cuda10.1-cudnn7-runtime
 
 # run with:
 # docker build -t ${USER}_container_tf2 --build-arg USER_ID=$(id -u) --build-arg GROUP_ID=$(id -g) . -f DockerfileTF25
@@ -33,7 +34,7 @@ WORKDIR /code/mmtracking
 #  (optional)
 # RUN pip install git+https://github.com/votchallenge/toolkit.git
 # install the latest mmcv
-RUN pip install mmcv-full -f https://download.openmmlab.com/mmcv/dist/cu113/torch1.12.0/index.html
+RUN pip install mmcv-full -f https://download.openmmlab.com/mmcv/dist/cu101/torch1.6.0/index.html
 
 # install mmdetection
 RUN pip install mmdet
