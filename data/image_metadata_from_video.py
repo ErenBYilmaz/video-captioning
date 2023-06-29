@@ -25,7 +25,7 @@ class ImageMetadataFromVideo(ImageMetadata):
         return f'{type(self).__name__}_{os.path.basename(self.video_path)}_{ts_str}'.replace('.', '_')
 
     def extra_info_string(self) -> str:
-        return f'The image was extracted from a video named {self.video_name()}.'
+        return f'The image was extracted from a video named "{self.video_name()}".'
 
     def video_name(self):
         return os.path.basename(self.video_path)
