@@ -30,6 +30,7 @@ class TextToSRTConverter:
             if caption == '':
                 continue
             timestamp = img_meta.timestamp
+            print('Processing', img_meta.image_filename())
             subs.append(pysrt.SubRipItem(index=len(subs) + 1,
                                          text=caption,
                                          start=timestamp * 1000 + self.caption_offset,
