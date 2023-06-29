@@ -1,5 +1,9 @@
+import json
+import os
+
 from data.image_metadata import ImageMetadata
 from lib.util import EBC
+from resources.resources import img_dir_path
 
 
 class ImageToCaptionConverter(EBC):
@@ -22,3 +26,11 @@ class ImageToCaptionConverter(EBC):
 
     def name(self):
         return self.__class__.__name__
+
+    def clear_output_cache(self):
+        for filename in os.listdir(img_dir_path()):
+            with open(os.path.join(img_dir_path(), filename), 'r') as f:
+                img_data = ImageMetadata.from_json(json.load(f))
+            if self.name() in img_data.tool_outputs:
+                del img_data.tool_outputs[self.name()]
+                img_data.save_to_disk()
