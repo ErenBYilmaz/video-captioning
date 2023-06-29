@@ -20,7 +20,7 @@ SHELL ["/bin/bash", "--login", "-c"]
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install curl git unzip graphviz nano gcc -y
 RUN wget https://repo.anaconda.com/archive/Anaconda3-2022.05-Linux-x86_64.sh
-RUN bash Anaconda3-2022.05-Linux-x86_64.sh
+RUN bash Anaconda3-2022.05-Linux-x86_64.sh -y
 
 # create current user inside image, so that newly created files belong to us and not to root and can be accessed outside docker as well
 ARG USER_ID
