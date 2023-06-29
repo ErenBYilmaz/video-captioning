@@ -50,7 +50,8 @@ RUN pip install mmdet
 
 # install mmtracking
 RUN git clone https://github.com/open-mmlab/mmtracking.git
-RUN cd mmtracking
+WORKDIR /code/mmtracking/mmtracking
+#RUN cd mmtracking
 RUN pip install -r requirements/build.txt
 RUN pip install -v -e .
 RUN pip install git+https://github.com/JonathonLuiten/TrackEval.git
