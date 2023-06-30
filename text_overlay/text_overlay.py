@@ -38,7 +38,7 @@ class TextOverlayCreator:
 
     def overlay_image_for_video(self, caption, video):
         lines = caption.splitlines()
-        pil_img = Image.new('RGBA', (video.w, video.h), (0, 0, 0, 0))
+        pil_img = Image.new('RGBA', (1280, 664), (0, 0, 0, 0))
         image_editable = ImageDraw.Draw(pil_img)
         box_path = os.path.join(resources.resource_dir_path(), "Frame at 00-00-16_overlay-black-background.png")
         foreground = Image.open(box_path)
@@ -57,6 +57,7 @@ class TextOverlayCreator:
             text = self.get_wrapped_text(text, font=self.font_3(), line_length=380)
             image_editable.text((80, offset), text, (237, 230, 211), font=(self.font_3()))
             offset += 15 + self.get_text_dimensions(text, self.font_3())[1]
+        pil_img.resize((video.w, video.h), resample=Image.BICUBIC)
         return pil_img
 
     def get_wrapped_text(self, text: str,
