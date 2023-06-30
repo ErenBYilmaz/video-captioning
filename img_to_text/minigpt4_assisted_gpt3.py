@@ -22,7 +22,7 @@ You are part of an image processing pipeline. You will be given an automatically
 The goal of the pipeline is to derive some interesting information about that image and to display it for some seconds on the screen as an overlay on top of the video.
 Your role in this pipeline is to provide some additional background information to be used as a caption for the video.
 Keep in mind that the user will not see the result as an image but rather as a video with your text as an overlay.
-Do not describe what objects look like or what is obviously visible in the image.
+Do not describe what objects look like or what is obviously visible in the image. Do not use phrases like "The image shows" or "The video displays".
  
 # DESCRIPTION:
 Here is the description (output of previous pipeline steps) that needs to be summarized to a caption - it is enclosed in triple quotes:
@@ -31,7 +31,7 @@ Here is the description (output of previous pipeline steps) that needs to be sum
 ```
 
 # OUTPUT FORMAT:
-Regarding the caption format, please provide up to 3 bullet points with at most six words each (not whole sentences), where each bullet point contains some interesting scientific facts about the locations/animals/people shown in the image.
+Regarding the caption format, please provide up to 3 bullet points with at most six words each (NOT whole sentences), where each bullet point contains some interesting scientific facts about the locations/animals/people shown in the image.
 Such information can and should include facts that are not listed in the description above, for example if an animal is shown in the foreground, you could provide species name and behaviour.
 
 An example output (for a different image that shows a tiger shark) could be:
@@ -39,7 +39,7 @@ An example output (for a different image that shows a tiger shark) could be:
 - Solitary, mostly nocturnal hunter
 - Length: 3-6 m
 
-If some part of the pipeline failed, (e.g. no image available), just answer with "{self.ERROR_PLACEHOLDER}".
+If some part of the pipeline failed, (e.g. no image available), just answer with "{self.ERROR_PLACEHOLDER}" and in any case do not answer in full sentences.
 '''
 
     def default_minigpt4_prompt(self):
